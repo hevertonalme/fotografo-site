@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Suas Fotos</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/cliente.css">
+</head>
+<body>
+
+  <!-- LOGIN DO CLIENTE -->
+  <div class="client-login" id="client-login">
+    <div class="login-box">
+      <div class="login-logo">
+        <span>✦</span>
+      </div>
+      <h1 class="login-title">Acesse suas fotos</h1>
+      <p class="login-sub">Digite a senha fornecida pelo fotógrafo</p>
+      <form id="client-login-form">
+        <div class="field">
+          <label>Senha</label>
+          <input type="password" id="client-pass" autocomplete="current-password" required placeholder="••••••••">
+        </div>
+        <p class="login-error" id="client-error"></p>
+        <button type="submit" class="btn btn-primary w-full">Entrar</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ÁREA DO CLIENTE -->
+  <div class="client-area" id="client-area" style="display:none">
+    <header class="client-header">
+      <div class="client-header-inner">
+        <div>
+          <p class="client-label">Galeria de</p>
+          <h1 class="client-name" id="client-name">Carregando...</h1>
+        </div>
+        <div class="client-header-actions">
+          <p class="client-expires" id="client-expires"></p>
+          <button class="btn btn-primary" id="download-btn">
+            <span>↓</span> Baixar todas as fotos
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main class="client-main">
+      <div class="client-grid" id="client-grid">
+        <div class="photo-skeleton"></div>
+        <div class="photo-skeleton"></div>
+        <div class="photo-skeleton"></div>
+        <div class="photo-skeleton"></div>
+      </div>
+    </main>
+  </div>
+
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox-close" id="lightbox-close">✕</button>
+    <button class="lightbox-nav prev" id="lb-prev">‹</button>
+    <button class="lightbox-nav next" id="lb-next">›</button>
+    <img class="lightbox-img" id="lightbox-img" src="" alt="">
+  </div>
+
+  <!-- TELA EXPIRADA -->
+  <div class="expired-screen" id="expired-screen" style="display:none">
+    <div class="expired-box">
+      <span class="expired-icon">⌛</span>
+      <h2>Acesso expirado</h2>
+      <p>O prazo para download das suas fotos expirou.<br>Entre em contato com o fotógrafo.</p>
+    </div>
+  </div>
+
+  <script src="/js/cliente.js"></script>
+</body>
+</html>

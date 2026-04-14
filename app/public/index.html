@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fotógrafo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <a class="nav-logo" href="#"></a>
+      <div class="nav-links">
+        <a href="#vitrine">Portfólio</a>
+        <a href="#sobre">Sobre</a>
+        <a href="#contato">Contato</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-inner">
+      <span class="hero-tag" id="hero-tag">Fotografia</span>
+      <h1 class="hero-title" id="hero-title">Seu Nome</h1>
+      <p class="hero-sub" id="hero-sub">Capturando momentos que duram para sempre</p>
+      <div class="hero-actions">
+        <a href="#vitrine" class="btn btn-primary">Ver Portfólio</a>
+        <a href="#contato" class="btn btn-ghost">Contato</a>
+      </div>
+    </div>
+    <div class="hero-scroll">
+      <span></span>
+    </div>
+  </section>
+
+  <!-- VITRINE -->
+  <section class="vitrine" id="vitrine">
+    <div class="container">
+      <header class="section-header">
+        <h2 class="section-title">Portfólio</h2>
+        <p class="section-sub">Uma seleção do meu trabalho</p>
+      </header>
+      <div class="vitrine-grid" id="vitrine-grid">
+        <div class="photo-skeleton"></div>
+        <div class="photo-skeleton"></div>
+        <div class="photo-skeleton"></div>
+        <div class="photo-skeleton"></div>
+        <div class="photo-skeleton"></div>
+        <div class="photo-skeleton"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALERIA (overflow horizontal) -->
+  <section class="galeria" id="galeria">
+    <div class="galeria-track" id="galeria-track"></div>
+  </section>
+
+  <!-- SOBRE -->
+  <section class="sobre" id="sobre">
+    <div class="container sobre-grid">
+      <div class="sobre-img">
+        <div class="sobre-frame"></div>
+      </div>
+      <div class="sobre-text">
+        <h2 class="section-title" id="about-title">Sobre</h2>
+        <p id="about-text">Carregando...</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTATO -->
+  <section class="contato" id="contato">
+    <div class="container">
+      <header class="section-header center">
+        <h2 class="section-title" id="contact-title">Contato</h2>
+        <p class="section-sub">Vamos criar algo juntos</p>
+      </header>
+      <div class="contato-grid">
+        <a class="contato-card" id="contato-email" href="#">
+          <span class="contato-icon">✉</span>
+          <span id="contact-email">email</span>
+        </a>
+        <a class="contato-card" id="contato-phone" href="#">
+          <span class="contato-icon">✆</span>
+          <span id="contact-phone">telefone</span>
+        </a>
+        <a class="contato-card" id="contato-insta" href="#" target="_blank">
+          <span class="contato-icon">◈</span>
+          <span id="contact-instagram">instagram</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox-close" id="lightbox-close">✕</button>
+    <button class="lightbox-nav prev" id="lb-prev">‹</button>
+    <button class="lightbox-nav next" id="lb-next">›</button>
+    <img class="lightbox-img" id="lightbox-img" src="" alt="">
+  </div>
+
+  <footer class="footer">
+    <p>© <span id="year"></span> — Todos os direitos reservados</p>
+  </footer>
+
+  <script src="/js/home.js"></script>
+</body>
+</html>

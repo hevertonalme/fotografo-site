@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin — Painel</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/admin.css">
+</head>
+<body>
+
+  <!-- LOGIN -->
+  <div class="login-screen" id="login-screen">
+    <div class="login-box">
+      <h1 class="login-title">Painel Admin</h1>
+      <form id="login-form">
+        <div class="field">
+          <label>Usuário</label>
+          <input type="text" id="login-user" autocomplete="username" required>
+        </div>
+        <div class="field">
+          <label>Senha</label>
+          <input type="password" id="login-pass" autocomplete="current-password" required>
+        </div>
+        <p class="login-error" id="login-error"></p>
+        <button type="submit" class="btn btn-primary w-full">Entrar</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- PAINEL -->
+  <div class="panel" id="panel" style="display:none">
+    <aside class="sidebar">
+      <div class="sidebar-logo">Admin</div>
+      <nav class="sidebar-nav">
+        <button class="nav-item active" data-tab="clientes">Clientes</button>
+        <button class="nav-item" data-tab="portfolio">Portfólio</button>
+        <button class="nav-item" data-tab="textos">Textos</button>
+        <button class="nav-item" data-tab="config">Configurações</button>
+      </nav>
+      <div class="sidebar-footer">
+        <a href="/" class="sidebar-link">Ver site</a>
+        <button class="sidebar-link danger" id="logout-btn">Sair</button>
+      </div>
+    </aside>
+
+    <main class="main">
+
+      <!-- TAB: CLIENTES -->
+      <section class="tab active" id="tab-clientes">
+        <div class="tab-header">
+          <h2>Clientes</h2>
+          <button class="btn btn-primary" id="new-client-btn">+ Novo cliente</button>
+        </div>
+
+        <div class="table-wrap">
+          <table class="table" id="clients-table">
+            <thead>
+              <tr>
+                <th>Nome</th>
+                <th>Slug</th>
+                <th>Fotos</th>
+                <th>Expira em</th>
+                <th>Link</th>
+                <th>Ações</th>
+              </tr>
+            </thead>
+            <tbody id="clients-tbody"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- TAB: PORTFOLIO -->
+      <section class="tab" id="tab-portfolio">
+        <div class="tab-header">
+          <h2>Portfólio</h2>
+          <label class="btn btn-primary" for="portfolio-upload">+ Adicionar fotos</label>
+          <input type="file" id="portfolio-upload" multiple accept="image/*" style="display:none">
+        </div>
+        <p class="tab-hint">Arraste as fotos para reordenar. As fotos aparecem na página principal.</p>
+        <div class="upload-progress" id="portfolio-progress" style="display:none">
+          <div class="progress-bar"><div class="progress-fill" id="portfolio-progress-fill"></div></div>
+          <span id="portfolio-progress-text">Enviando...</span>
+        </div>
+        <div class="photo-grid" id="portfolio-grid"></div>
+      </section>
+
+      <!-- TAB: TEXTOS -->
+      <section class="tab" id="tab-textos">
+        <div class="tab-header">
+          <h2>Textos do Site</h2>
+          <button class="btn btn-primary" id="save-texts-btn">Salvar</button>
+        </div>
+        <form class="texts-form" id="texts-form">
+          <div class="texts-group">
+            <h3>Hero</h3>
+            <div class="field"><label>Tag</label><input type="text" name="hero_tag"></div>
+            <div class="field"><label>Título</label><input type="text" name="hero_title"></div>
+            <div class="field"><label>Subtítulo</label><input type="text" name="hero_sub"></div>
+          </div>
+          <div class="texts-group">
+            <h3>Sobre</h3>
+            <div class="field"><label>Título</label><input type="text" name="about_title"></div>
+            <div class="field"><label>Texto</label><textarea name="about_text" rows="5"></textarea></div>
+          </div>
+          <div class="texts-group">
+            <h3>Contato</h3>
+            <div class="field"><label>Título</label><input type="text" name="contact_title"></div>
+            <div class="field"><label>Email</label><input type="email" name="contact_email"></div>
+            <div class="field"><label>Telefone</label><input type="text" name="contact_phone"></div>
+            <div class="field"><label>Instagram</label><input type="text" name="contact_instagram" placeholder="@seuperfil"></div>
+          </div>
+        </form>
+      </section>
+
+      <!-- TAB: CONFIG -->
+      <section class="tab" id="tab-config">
+        <div class="tab-header"><h2>Configurações</h2></div>
+        <div class="config-box">
+          <h3>Trocar senha</h3>
+          <form id="change-pass-form">
+            <div class="field"><label>Senha atual</label><input type="password" id="cp-current" required></div>
+            <div class="field"><label>Nova senha</label><input type="password" id="cp-new" required minlength="6"></div>
+            <div class="field"><label>Confirmar nova senha</label><input type="password" id="cp-confirm" required></div>
+            <p class="form-error" id="cp-error"></p>
+            <button type="submit" class="btn btn-primary">Alterar senha</button>
+          </form>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- MODAL: NOVO/EDITAR CLIENTE -->
+  <div class="modal" id="client-modal">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3 id="modal-title">Novo cliente</h3>
+        <button class="modal-close" id="modal-close">✕</button>
+      </div>
+      <form id="client-form">
+        <input type="hidden" id="edit-client-id">
+        <div class="field"><label>Nome *</label><input type="text" id="cf-name" required></div>
+        <div class="field">
+          <label>Slug * <small>(aparece na URL: /cliente/slug)</small></label>
+          <input type="text" id="cf-slug" required pattern="[a-z0-9-]+" title="Apenas letras minúsculas, números e hífens">
+        </div>
+        <div class="field">
+          <label>Senha * <small id="pass-hint">(obrigatória)</small></label>
+          <input type="text" id="cf-pass">
+        </div>
+        <div class="field"><label>Data de expiração *</label><input type="date" id="cf-expires" required></div>
+        <p class="form-error" id="cf-error"></p>
+        <div class="modal-actions">
+          <button type="button" class="btn btn-ghost" id="modal-cancel">Cancelar</button>
+          <button type="submit" class="btn btn-primary">Salvar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL: FOTOS DO CLIENTE -->
+  <div class="modal" id="photos-modal">
+    <div class="modal-box modal-box--wide">
+      <div class="modal-header">
+        <h3 id="photos-modal-title">Fotos do cliente</h3>
+        <button class="modal-close" id="photos-modal-close">✕</button>
+      </div>
+      <div class="photos-modal-actions">
+        <label class="btn btn-primary" for="client-upload">+ Adicionar fotos</label>
+        <input type="file" id="client-upload" multiple accept="image/*" style="display:none">
+      </div>
+      <div class="upload-progress" id="client-progress" style="display:none">
+        <div class="progress-bar"><div class="progress-fill" id="client-progress-fill"></div></div>
+        <span id="client-progress-text">Enviando...</span>
+      </div>
+      <div class="photo-grid" id="client-photos-grid"></div>
+    </div>
+  </div>
+
+  <script src="/js/admin.js"></script>
+</body>
+</html>

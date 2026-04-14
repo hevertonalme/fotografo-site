@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  app:
+    build: ./app
+    ports:
+      - "3030:3000"
+    volumes:
+      - app_data:/app/data
+      - app_uploads:/app/uploads
+    environment:
+      - JWT_SECRET=${JWT_SECRET:-fotografo_jwt_secret_troque_em_producao}
+      - PORT=3000
+      - NODE_ENV=production
+    restart: unless-stopped
+
+volumes:
+  app_data:
+  app_uploads:
